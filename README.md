@@ -1,5 +1,5 @@
 # LLVM_Pass_Skeleton# LLVM_Pass_Skeleton
-src 주석 추가, new PM 소스 추가
+TODO : new PM 소스 추가, LLVM build 방법 README
 
 ##
 ## LLVM-13 설치 및 PATH 설정
@@ -24,9 +24,9 @@ apt-get install -y llvm-13 llvm-13-dev libllvm13 clang-13 llvm-13-tools libmlir-
 ##
 ## How to build
 ```
-mkdir ./src/build
+mkdir ./src/<legacyPM or newPM>/build
 
-cd ./src/build
+cd ./src/<legacyPM or newPM>//build
 
 cmake ..
 
