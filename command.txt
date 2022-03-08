@@ -1,0 +1,16 @@
+# clang으로 소스파일 to IR코드
+clang -S -emit-llvm -O0 "sample.c" -o "sample.ll"
+
+
+# IR -> LLVM Bitcode
+llvm-as test.ll -o test.bc 
+
+# LLVM Bitcode -> IR
+llvm-dis tets.bc -o test.lldkd
+
+
+
+
+
+# 새 Pass Manager 사용 안하고, Pass 로드해서 사용하기
+opt -load "libFuncBlockCount.so" -funcblockcount -enable-new-pm=0 -disable-output "test.ll"
