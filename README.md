@@ -1,5 +1,5 @@
 # LLVM_Pass_Skeleton# LLVM_Pass_Skeleton
-TODO : new PM 소스 추가, LLVM build 방법 README
+TODO : new PM 소스 추가, LLVM build 방법 README, command.txt & README 머지
 
 ##
 ## LLVM-13 설치 및 PATH 설정
