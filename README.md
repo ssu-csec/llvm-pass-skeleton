@@ -1,6 +1,6 @@
 # LLVM_Pass_Skeleton
 
-TODO : new PM 소스 추가. command.txt & README 머지
+TODO : new PM 소스 추가
 ### llvm-toolkits 명령어
 > .c 소스파일 to .ll llvm IR코드
 > -O0 -O1 -O2 Optimization 필요단계에 따라 적용해야함.
