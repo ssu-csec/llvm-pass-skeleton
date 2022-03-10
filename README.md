@@ -51,7 +51,7 @@ cmake -G Ninja \
         -DLLVM_ENABLE_PROJECTS=clang \
         -DLLVM_TARGETS_TO_BUILD=X86 \
         -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_INSTALL_PREFIX=$LLVM_DIR \
+        -DCMAKE_INSTALL_PREFIX=<install dir> \
         -DLLVM_INSTALL_UTILS=ON \
         ../llvm
 
