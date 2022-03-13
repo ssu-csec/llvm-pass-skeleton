@@ -21,6 +21,14 @@ llvm-dis <sample.bc> -o <sample.ll>
 
 ### Ubuntu 20.04.4 LTS apt 패키지를 이용한 설치.
 ```
+apt-get update && apt-get install -y \
+    git \
+    cmake \
+    ninja-build \
+    build-essential \
+    wget \
+    software-properties-common
+    
 wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
 
 apt-add-repository "deb http://apt.llvm.org/focal/ llvm-toolchain-focal-13 main" 
