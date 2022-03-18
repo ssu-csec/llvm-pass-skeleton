@@ -8,7 +8,7 @@ list(APPEND CMAKE_PREFIX_PATH "/usr/lib/llvm-13/lib/cmake/llvm/")
 # find_package(LLVM 11.0.0 REQUIRED CONFIG) instead.
 find_package(LLVM REQUIRED CONFIG)
 if(NOT "13" VERSION_LESS "${LLVM_VERSION_MAJOR}")
-    message(FATAL_ERROR "Found LLVM $(LLVM_VERSION_MAJOR}, but need LLVM-13")
+    message(FATAL_ERROR "Found LLVM ${LLVM_VERSION_MAJOR}, but need LLVM-13")
 endif()
 
 message(STATUS "Found LLVM ${LLVM_PACKAGE_VERSION}")
