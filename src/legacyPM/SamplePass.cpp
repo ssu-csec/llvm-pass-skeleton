@@ -50,6 +50,7 @@ namespace {
 			User *last = discovered.back();
 			for (auto& use : last->uses()) {
 				User *user = use.getUser();
+				// Todo: check if operator is 'store' (such like memory operation), then we need to find specific operand."
 				discovered.push_back(user);
 				discovered = dfs(discovered);
 			}
