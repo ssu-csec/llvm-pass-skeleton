@@ -1,5 +1,6 @@
 #define DEBUG_TYPE "samplepass"
 
+#include <list>
 #include "llvm/IR/LegacyPassManager.h"
 #include "llvm/Passes/PassBuilder.h"
 #include "llvm/Passes/PassPlugin.h"
@@ -9,6 +10,7 @@
 #include "llvm/Support/raw_ostream.h"
 
 using namespace llvm;
+using namespace std;
 
 namespace {
 
@@ -25,12 +27,41 @@ namespace {
           errs() << "<< runOnModule >> \n";
           errs() << "Name of the module " << M.getName() << "\n";
 
-          for(auto iter = M.getFunctionList().begin(); iter != M.getFunctionList().end(); ++iter) {
-	          llvm::errs() << "Function name : " << iter->getName() << "\n";
+		  for (auto& F : M) {
+          	  errs() << "Name of the function " << F.getName() << "\n";
+			  errs() << "\n\n";
+			  for (auto& arg : F.args()) {
+          	  	errs() << "Name of the args " << arg.getArgNo() << "\n";
+					for (auto& use : arg.uses()) {
+						User *user = use.getUser();
+						list<User*> discovered;
+						discovered.push_back(user);
+						discovered = dfs(discovered);
+						print_users(discovered);
+					}
+
+			  }
           }
 
           return false;
         }
+
+		list<User*> dfs(list<User*> discovered) {
+			User *last = discovered.back();
+			for (auto& use : last->uses()) {
+				User *user = use.getUser();
+				discovered.push_back(user);
+				discovered = dfs(discovered);
+			}
+			return discovered;
+		}
+
+		void print_users(list<User*> users) {
+			for (auto& user : users){
+				user->print(errs());
+				errs() << "\n\n";
+			}
+		}
     };
 
 } // namespace
