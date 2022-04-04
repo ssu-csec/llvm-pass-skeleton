@@ -15,6 +15,13 @@ llvm-as <sample.ll> -o <sample.bc>
 ```
 llvm-dis <sample.bc> -o <sample.ll>
 ```
+> .ll IR코드 to <.Func.dot> to CFG pdf 파일
+```
+opt -dot-cfg -enable-new-pm=0 <sample.ll>
+===> ./.func1.dot ./.func2.dot ./.func3.dot 생성 
+
+dot -Tpdf <./.func1.dot> -o <func.pdf>
+```
 
 ##
 ## LLVM-13 설치 및 PATH 설정
