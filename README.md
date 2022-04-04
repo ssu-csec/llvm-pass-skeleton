@@ -16,6 +16,7 @@ llvm-as <sample.ll> -o <sample.bc>
 llvm-dis <sample.bc> -o <sample.ll>
 ```
 > .ll IR코드 to <.Func.dot> to CFG pdf 파일
+> sudo apt-get install graphviz
 ```
 opt -dot-cfg -enable-new-pm=0 <sample.ll>
 ===> ./.func1.dot ./.func2.dot ./.func3.dot 생성 
