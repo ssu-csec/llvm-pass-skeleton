@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM
+CMAKE_SOURCE_DIR = /home/tpghks/Workspace/pass1/legacyPM
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/build
+CMAKE_BINARY_DIR = /home/tpghks/Workspace/pass1/legacyPM/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/build/CMakeFiles /home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/tpghks/Workspace/pass1/legacyPM/build/CMakeFiles /home/tpghks/Workspace/pass1/legacyPM/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/tpghks/Workspace/pass1/legacyPM/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named SamplePass
+# Target rules for targets named DFApass
 
 # Build rule for target.
-SamplePass: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 SamplePass
-.PHONY : SamplePass
+DFApass: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 DFApass
+.PHONY : DFApass
 
 # fast build rule for target.
-SamplePass/fast:
-	$(MAKE) -f CMakeFiles/SamplePass.dir/build.make CMakeFiles/SamplePass.dir/build
-.PHONY : SamplePass/fast
+DFApass/fast:
+	$(MAKE) -f CMakeFiles/DFApass.dir/build.make CMakeFiles/DFApass.dir/build
+.PHONY : DFApass/fast
 
 #=============================================================================
 # Target rules for targets named acc_gen
@@ -162,32 +162,59 @@ intrinsics_gen/fast:
 	$(MAKE) -f CMakeFiles/intrinsics_gen.dir/build.make CMakeFiles/intrinsics_gen.dir/build
 .PHONY : intrinsics_gen/fast
 
-SamplePass.o: SamplePass.cpp.o
+src/DFApass.o: src/DFApass.cpp.o
 
-.PHONY : SamplePass.o
+.PHONY : src/DFApass.o
 
 # target to build an object file
-SamplePass.cpp.o:
-	$(MAKE) -f CMakeFiles/SamplePass.dir/build.make CMakeFiles/SamplePass.dir/SamplePass.cpp.o
-.PHONY : SamplePass.cpp.o
+src/DFApass.cpp.o:
+	$(MAKE) -f CMakeFiles/DFApass.dir/build.make CMakeFiles/DFApass.dir/src/DFApass.cpp.o
+.PHONY : src/DFApass.cpp.o
 
-SamplePass.i: SamplePass.cpp.i
+src/DFApass.i: src/DFApass.cpp.i
 
-.PHONY : SamplePass.i
+.PHONY : src/DFApass.i
 
 # target to preprocess a source file
-SamplePass.cpp.i:
-	$(MAKE) -f CMakeFiles/SamplePass.dir/build.make CMakeFiles/SamplePass.dir/SamplePass.cpp.i
-.PHONY : SamplePass.cpp.i
+src/DFApass.cpp.i:
+	$(MAKE) -f CMakeFiles/DFApass.dir/build.make CMakeFiles/DFApass.dir/src/DFApass.cpp.i
+.PHONY : src/DFApass.cpp.i
 
-SamplePass.s: SamplePass.cpp.s
+src/DFApass.s: src/DFApass.cpp.s
 
-.PHONY : SamplePass.s
+.PHONY : src/DFApass.s
 
 # target to generate assembly for a file
-SamplePass.cpp.s:
-	$(MAKE) -f CMakeFiles/SamplePass.dir/build.make CMakeFiles/SamplePass.dir/SamplePass.cpp.s
-.PHONY : SamplePass.cpp.s
+src/DFApass.cpp.s:
+	$(MAKE) -f CMakeFiles/DFApass.dir/build.make CMakeFiles/DFApass.dir/src/DFApass.cpp.s
+.PHONY : src/DFApass.cpp.s
+
+src/dfa-support.o: src/dfa-support.cpp.o
+
+.PHONY : src/dfa-support.o
+
+# target to build an object file
+src/dfa-support.cpp.o:
+	$(MAKE) -f CMakeFiles/DFApass.dir/build.make CMakeFiles/DFApass.dir/src/dfa-support.cpp.o
+.PHONY : src/dfa-support.cpp.o
+
+src/dfa-support.i: src/dfa-support.cpp.i
+
+.PHONY : src/dfa-support.i
+
+# target to preprocess a source file
+src/dfa-support.cpp.i:
+	$(MAKE) -f CMakeFiles/DFApass.dir/build.make CMakeFiles/DFApass.dir/src/dfa-support.cpp.i
+.PHONY : src/dfa-support.cpp.i
+
+src/dfa-support.s: src/dfa-support.cpp.s
+
+.PHONY : src/dfa-support.s
+
+# target to generate assembly for a file
+src/dfa-support.cpp.s:
+	$(MAKE) -f CMakeFiles/DFApass.dir/build.make CMakeFiles/DFApass.dir/src/dfa-support.cpp.s
+.PHONY : src/dfa-support.cpp.s
 
 # Help Target
 help:
@@ -196,14 +223,17 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... SamplePass"
+	@echo "... DFApass"
 	@echo "... acc_gen"
 	@echo "... edit_cache"
 	@echo "... omp_gen"
 	@echo "... intrinsics_gen"
-	@echo "... SamplePass.o"
-	@echo "... SamplePass.i"
-	@echo "... SamplePass.s"
+	@echo "... src/DFApass.o"
+	@echo "... src/DFApass.i"
+	@echo "... src/DFApass.s"
+	@echo "... src/dfa-support.o"
+	@echo "... src/dfa-support.i"
+	@echo "... src/dfa-support.s"
 .PHONY : help
 
 

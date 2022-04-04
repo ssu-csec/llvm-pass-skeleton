@@ -4,13 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/SamplePass.cpp" "/home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/build/CMakeFiles/SamplePass.dir/SamplePass.cpp.o"
+  "/home/tpghks/Workspace/pass1/legacyPM/src/DFApass.cpp" "/home/tpghks/Workspace/pass1/legacyPM/build/CMakeFiles/DFApass.dir/src/DFApass.cpp.o"
+  "/home/tpghks/Workspace/pass1/legacyPM/src/dfa-support.cpp" "/home/tpghks/Workspace/pass1/legacyPM/build/CMakeFiles/DFApass.dir/src/dfa-support.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
-  "SamplePass_EXPORTS"
+  "DFApass_EXPORTS"
   )
 
 # The include file search paths:

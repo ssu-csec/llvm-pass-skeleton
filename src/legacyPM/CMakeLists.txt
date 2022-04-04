@@ -1,9 +1,8 @@
 cmake_minimum_required(VERSION 3.13.4)
-project(llvm-funcblockcount)
+project(llvm-DFApass)
 
-# Add the location of LLVMConfig.cmake to CMake search paths (so that
-# find_package can locate it)
-list(APPEND CMAKE_PREFIX_PATH "/usr/lib/llvm-13/lib/cmake/llvm/")
+## <llvm install directory>/lib/cmake/llvm ##
+list(APPEND CMAKE_PREFIX_PATH "~/Workspace/llvm-13/lib/cmake/llvm/")
 
 # find_package(LLVM 11.0.0 REQUIRED CONFIG) instead.
 find_package(LLVM REQUIRED CONFIG)
@@ -33,9 +32,10 @@ endif()
 #===============================================================================
 # 3. ADD THE TARGET
 #===============================================================================
-add_library(SamplePass SHARED SamplePass.cpp)
+
+add_library(DFApass SHARED src/DFApass.cpp src/dfa-support.cpp)
 
 # Allow undefined symbols in shared objects on Darwin (this is the default
 # behaviour on Linux)
-target_link_libraries(SamplePass
+target_link_libraries(DFApass
   "$<$<PLATFORM_ID:Darwin>:-undefined dynamic_lookup>")

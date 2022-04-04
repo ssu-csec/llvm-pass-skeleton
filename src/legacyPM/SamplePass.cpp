@@ -26,7 +26,7 @@ namespace {
           errs() << "Name of the module " << M.getName() << "\n";
 
           for(auto iter = M.getFunctionList().begin(); iter != M.getFunctionList().end(); ++iter) {
-	          llvm::errs() << "Function name : " << iter->getName() << "\n";
+	          errs() << "Function name : " << iter->getName() << "\n";
           }
 
           return false;
