@@ -4,7 +4,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #include "../include/dfa-support.h"
-
 namespace llvm
 {
     using namespace std;
@@ -13,7 +12,6 @@ namespace llvm
     // about for the Available Expression analysis
     Expression::Expression(Instruction *I)
     {
-        errs() << "is in Expression Initialization\n";
         if (I->isBinaryOp())
         {
             BinaryOperator *BO = dyn_cast<BinaryOperator>(I);
@@ -21,21 +19,28 @@ namespace llvm
             this->v2 = BO->getOperand(1);
             this->v = BO;
             this->op = BO->getOpcode();
+            this->rhs = makeRhs();
+            this->lhs = getShortValueName(v);
         }
         else if(I->getOpcode() == Instruction::Store){
             this->v1 = I->getOperand(0);
             this->v2 = I->getOperand(1);
             this->v = I;
             this->op = I->getOpcode();
+            this->lhs = getShortValueName(v2);
+            this->rhs = getShortValueName(v1);
         }
         else if(I->getOpcode() == Instruction::Load){
             this->v1 = I->getOperand(0);
             this->v = I;
             this->op = I->getOpcode();
+            this->lhs = getShortValueName(v);
+            this->rhs = getShortValueName(v1);
+            
         }
         else
         {
-            errs() << "We're only considering BinaryOperators\n";
+            errs() << "Nope.\n";
         }
     }
 
@@ -74,10 +79,12 @@ namespace llvm
             return this->v1 < e2.v1;
         }
     }
-
+    std::string Expression::toString() const{
+        return lhs + " = " + rhs;
+    }
     // A pretty printer for Expression objects
     // Feel free to alter in any way you like
-    std::string Expression::toString() const
+    std::string Expression::makeRhs() const
     {
         std::string op = "?";
         switch (this->op)
@@ -120,12 +127,6 @@ namespace llvm
         case Instruction::Xor:
             op = "xor";
             break;
-        case Instruction::Store:
-            op = "=";
-            return getShortValueName(v2) + " " + op + " " + getShortValueName(v1);
-        case Instruction::Load:
-            op = "=";
-            return getShortValueName(v) + " " + op + " " + getShortValueName(v1);;
         }
         return getShortValueName(v1) + " " + op + " " + getShortValueName(v2);
     }

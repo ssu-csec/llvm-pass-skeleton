@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/tpghks/Workspace/pass1/legacyPM
+CMAKE_SOURCE_DIR = /home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/tpghks/Workspace/pass1/legacyPM/build
+CMAKE_BINARY_DIR = /home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/build
 
 # Utility rule file for omp_gen.
 
@@ -67,6 +67,6 @@ CMakeFiles/omp_gen.dir/clean:
 .PHONY : CMakeFiles/omp_gen.dir/clean
 
 CMakeFiles/omp_gen.dir/depend:
-	cd /home/tpghks/Workspace/pass1/legacyPM/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/tpghks/Workspace/pass1/legacyPM /home/tpghks/Workspace/pass1/legacyPM /home/tpghks/Workspace/pass1/legacyPM/build /home/tpghks/Workspace/pass1/legacyPM/build /home/tpghks/Workspace/pass1/legacyPM/build/CMakeFiles/omp_gen.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM /home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM /home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/build /home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/build /home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/build/CMakeFiles/omp_gen.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/omp_gen.dir/depend
 

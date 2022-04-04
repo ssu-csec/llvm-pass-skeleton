@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/tpghks/Workspace/pass1/legacyPM
+CMAKE_SOURCE_DIR = /home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/tpghks/Workspace/pass1/legacyPM/build
+CMAKE_BINARY_DIR = /home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/DFApass.dir/depend.make
@@ -59,29 +59,29 @@ include CMakeFiles/DFApass.dir/flags.make
 
 CMakeFiles/DFApass.dir/src/DFApass.cpp.o: CMakeFiles/DFApass.dir/flags.make
 CMakeFiles/DFApass.dir/src/DFApass.cpp.o: ../src/DFApass.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tpghks/Workspace/pass1/legacyPM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/DFApass.dir/src/DFApass.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DFApass.dir/src/DFApass.cpp.o -c /home/tpghks/Workspace/pass1/legacyPM/src/DFApass.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/DFApass.dir/src/DFApass.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DFApass.dir/src/DFApass.cpp.o -c /home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/src/DFApass.cpp
 
 CMakeFiles/DFApass.dir/src/DFApass.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DFApass.dir/src/DFApass.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tpghks/Workspace/pass1/legacyPM/src/DFApass.cpp > CMakeFiles/DFApass.dir/src/DFApass.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/src/DFApass.cpp > CMakeFiles/DFApass.dir/src/DFApass.cpp.i
 
 CMakeFiles/DFApass.dir/src/DFApass.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DFApass.dir/src/DFApass.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tpghks/Workspace/pass1/legacyPM/src/DFApass.cpp -o CMakeFiles/DFApass.dir/src/DFApass.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/src/DFApass.cpp -o CMakeFiles/DFApass.dir/src/DFApass.cpp.s
 
 CMakeFiles/DFApass.dir/src/dfa-support.cpp.o: CMakeFiles/DFApass.dir/flags.make
 CMakeFiles/DFApass.dir/src/dfa-support.cpp.o: ../src/dfa-support.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tpghks/Workspace/pass1/legacyPM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/DFApass.dir/src/dfa-support.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DFApass.dir/src/dfa-support.cpp.o -c /home/tpghks/Workspace/pass1/legacyPM/src/dfa-support.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/DFApass.dir/src/dfa-support.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DFApass.dir/src/dfa-support.cpp.o -c /home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/src/dfa-support.cpp
 
 CMakeFiles/DFApass.dir/src/dfa-support.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DFApass.dir/src/dfa-support.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tpghks/Workspace/pass1/legacyPM/src/dfa-support.cpp > CMakeFiles/DFApass.dir/src/dfa-support.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/src/dfa-support.cpp > CMakeFiles/DFApass.dir/src/dfa-support.cpp.i
 
 CMakeFiles/DFApass.dir/src/dfa-support.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DFApass.dir/src/dfa-support.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tpghks/Workspace/pass1/legacyPM/src/dfa-support.cpp -o CMakeFiles/DFApass.dir/src/dfa-support.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/src/dfa-support.cpp -o CMakeFiles/DFApass.dir/src/dfa-support.cpp.s
 
 # Object files for target DFApass
 DFApass_OBJECTS = \
@@ -95,7 +95,7 @@ libDFApass.so: CMakeFiles/DFApass.dir/src/DFApass.cpp.o
 libDFApass.so: CMakeFiles/DFApass.dir/src/dfa-support.cpp.o
 libDFApass.so: CMakeFiles/DFApass.dir/build.make
 libDFApass.so: CMakeFiles/DFApass.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/tpghks/Workspace/pass1/legacyPM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX shared library libDFApass.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX shared library libDFApass.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/DFApass.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -108,6 +108,6 @@ CMakeFiles/DFApass.dir/clean:
 .PHONY : CMakeFiles/DFApass.dir/clean
 
 CMakeFiles/DFApass.dir/depend:
-	cd /home/tpghks/Workspace/pass1/legacyPM/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/tpghks/Workspace/pass1/legacyPM /home/tpghks/Workspace/pass1/legacyPM /home/tpghks/Workspace/pass1/legacyPM/build /home/tpghks/Workspace/pass1/legacyPM/build /home/tpghks/Workspace/pass1/legacyPM/build/CMakeFiles/DFApass.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM /home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM /home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/build /home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/build /home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/build/CMakeFiles/DFApass.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/DFApass.dir/depend
 

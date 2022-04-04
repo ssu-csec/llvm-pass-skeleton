@@ -1,4 +1,4 @@
-# Install script for directory: /home/tpghks/Workspace/pass1/legacyPM
+# Install script for directory: /home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/tpghks/Workspace/pass1/legacyPM/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

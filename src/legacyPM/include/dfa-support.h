@@ -20,14 +20,18 @@ namespace llvm {
 
   class Expression {
   public:
+    std::string lhs;
+    std::string rhs;
     Value* v1;
     Value* v2;
     Value* v;
     unsigned int op;
+    
     Expression (Instruction * I);
     bool operator== (const Expression &e2) const;
     bool operator< (const Expression &e2) const;
     std::string toString() const;
+    std::string makeRhs() const;
   };
 
   void printSet(std::vector<Expression> * x);

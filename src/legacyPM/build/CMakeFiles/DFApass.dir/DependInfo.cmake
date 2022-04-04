@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/tpghks/Workspace/pass1/legacyPM/src/DFApass.cpp" "/home/tpghks/Workspace/pass1/legacyPM/build/CMakeFiles/DFApass.dir/src/DFApass.cpp.o"
-  "/home/tpghks/Workspace/pass1/legacyPM/src/dfa-support.cpp" "/home/tpghks/Workspace/pass1/legacyPM/build/CMakeFiles/DFApass.dir/src/dfa-support.cpp.o"
+  "/home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/src/DFApass.cpp" "/home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/build/CMakeFiles/DFApass.dir/src/DFApass.cpp.o"
+  "/home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/src/dfa-support.cpp" "/home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/build/CMakeFiles/DFApass.dir/src/dfa-support.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

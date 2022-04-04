@@ -1,4 +1,6 @@
 #define DEBUG_TYPE "dfapass"
+
+#include <map>
 #include "llvm/IR/LegacyPassManager.h"
 #include "llvm/Passes/PassBuilder.h"
 #include "llvm/Passes/PassPlugin.h"
@@ -11,6 +13,7 @@ namespace
 {
   struct DFAPass : public ModulePass
   {
+    map<string,string> dataMap;
     static char ID;
     DFAPass() : ModulePass(ID) {}
     void getAnalysisUsage(AnalysisUsage &AU) const override
@@ -44,6 +47,9 @@ namespace
           errs() << "\n\n==============================\n";
           print_users(discovered);
         }
+        for(auto aa: dataMap){
+          errs() << aa.first << " = " << aa.second << "\n";
+        }
       }
       return false;
     }
@@ -51,7 +57,8 @@ namespace
     {
       User *first = discovered.front();
       Instruction *II = dyn_cast<Instruction>(first);
-      // Expression test(II);
+      Expression IE(II);
+      dataMap.insert({IE.lhs, IE.rhs});
       if (II->getOpcode() == Instruction::Store)
       {
         discovered.pop_front();
@@ -60,11 +67,9 @@ namespace
         {
           User *user = use.getUser();
           if (II == user){
-            Expression* test = new Expression(II);
-             errs() << test->toString() << "\n";
             continue;
           }
-           
+          
           errs() << *user << "\n\n";
           discovered.push_back(user);
          
@@ -75,9 +80,6 @@ namespace
       {
         discovered.pop_front();
         errs() << discovered.size() << " Now Inst :: " << *II << "\n";
-        Expression* test = new Expression(II);
-        errs() << test->toString() << "\n";
-        
         for (auto &use : II->uses())
         {        
           User *user = use.getUser();    
