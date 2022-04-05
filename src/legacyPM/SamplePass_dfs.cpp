@@ -58,21 +58,49 @@ namespace {
 					User *user = (User *)new_def->getOperand(1);
 					if (user != def){
 						for(int i = 0; i < indent_count; i++){
-							errs() << "\t";
+							errs() << "  ";
 						}
-						errs() << "->";
+						errs() << "-> ";
 						errs() << getShortValueName(user);
+						for(int i = 0; i < 20-indent_count; i++){
+							errs() << "  ";
+						}
+						errs() << "\t|\t";
+						new_def->print(errs());
 						errs() << "\n";
 						discovered.push(user);
 						discovered = dfs(discovered, indent_count);
 					}
 				}
+				else if(strncmp(((Instruction *) new_def)->getOpcodeName(), "br", 2) == 0){
+					continue;
+				}
+				else if(strncmp(((Instruction *) new_def)->getOpcodeName(), "ret", 3) == 0){
+					User *user = (User *) new_def->getOperand(0);
+					for(int i = 0; i < indent_count; i++){
+						errs() << "  ";
+					}
+					errs() << "-> ret ";
+					errs() << getShortValueName(user);
+					for(int i = 0; i < 20-indent_count-2; i++){
+						errs() << "  ";
+					}
+					errs() << "\t|\t";
+					user->print(errs());
+					errs() << "\n";
+					continue;
+				}
 				else{
 					for(int i = 0; i < indent_count; i++){
-						errs() << "\t";
+						errs() << "  ";
 					}
-					errs() << "->";
+					errs() << "-> ";
 					errs() << getShortValueName(user);
+					for(int i = 0; i < 20-indent_count; i++){
+						errs() << "  ";
+					}
+					errs() << "\t|\t";
+					user->print(errs());
 					errs() << "\n";
 					discovered.push(user);
 					discovered = dfs(discovered, indent_count);
