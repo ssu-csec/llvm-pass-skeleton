@@ -1,6 +1,0 @@
-/home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/build/CMakeFiles/rebuild_cache.dir
-/home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/build/CMakeFiles/SamplePass.dir
-/home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/build/CMakeFiles/acc_gen.dir
-/home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/build/CMakeFiles/edit_cache.dir
-/home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/build/CMakeFiles/omp_gen.dir
-/home/tpghks/Workspace/llvm-pass-skeleton/src/legacyPM/build/CMakeFiles/intrinsics_gen.dir
