@@ -86,7 +86,7 @@ namespace {
 						errs() << "  ";
 					}
 					errs() << "\t|\t";
-					user->print(errs());
+					new_def->print(errs());
 					errs() << "\n";
 					continue;
 				}
