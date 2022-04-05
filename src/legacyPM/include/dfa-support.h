@@ -6,6 +6,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 
 #include "llvm/IR/Function.h"
 #include "llvm/IR/Instruction.h"
@@ -13,9 +14,11 @@
 #include "llvm/IR/Instructions.h"
 #include "llvm/Pass.h"
 #include "llvm/Support/raw_ostream.h"
+using namespace std;
+
+static map<string, string> dataMap;
 
 namespace llvm {
-  using namespace std;
   std::string getShortValueName(Value * v);
 
   class Expression {
@@ -26,7 +29,6 @@ namespace llvm {
     Value* v2;
     Value* v;
     unsigned int op;
-    
     Expression (Instruction * I);
     bool operator== (const Expression &e2) const;
     bool operator< (const Expression &e2) const;
@@ -35,7 +37,6 @@ namespace llvm {
   };
 
   void printSet(std::vector<Expression> * x);
-  void printStringSet(std::vector<string> * x);
 }
 
 #endif

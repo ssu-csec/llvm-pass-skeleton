@@ -21,6 +21,7 @@ namespace llvm
             this->op = BO->getOpcode();
             this->rhs = makeRhs();
             this->lhs = getShortValueName(v);
+            dataMap.insert({this->lhs, this->rhs});
         }
         else if(I->getOpcode() == Instruction::Store){
             this->v1 = I->getOperand(0);
@@ -28,15 +29,22 @@ namespace llvm
             this->v = I;
             this->op = I->getOpcode();
             this->lhs = getShortValueName(v2);
+            if(dataMap.find(getShortValueName(v1))!=dataMap.end()){
+                this->rhs = "(" + dataMap.find(getShortValueName(v1))->second + ")";
+            }
             this->rhs = getShortValueName(v1);
+            dataMap.insert({this->lhs, this->rhs});
         }
         else if(I->getOpcode() == Instruction::Load){
             this->v1 = I->getOperand(0);
             this->v = I;
             this->op = I->getOpcode();
             this->lhs = getShortValueName(v);
+            if(dataMap.find(getShortValueName(v1))!=dataMap.end()){
+                this->rhs = "(" + dataMap.find(getShortValueName(v1))->second + ")";
+            }
             this->rhs = getShortValueName(v1);
-            
+            dataMap.insert({this->lhs, this->rhs});
         }
         else
         {
@@ -128,51 +136,40 @@ namespace llvm
             op = "xor";
             break;
         }
-        return getShortValueName(v1) + " " + op + " " + getShortValueName(v2);
+        std::string a1, a2; 
+        a1 = getShortValueName(v1);
+        if(dataMap.find(a1) != dataMap.end()){
+            a1 = "(" + dataMap.find(a1)->second + ")";
+        }
+        a2 = getShortValueName(v2);
+        if(dataMap.find(a1) != dataMap.end()){
+            a1 = "(" + dataMap.find(a2)->second + ")";
+        }
+        return  a1 + " " + op + " " + a2;
     }
 
     // Silly code to print out a set of expressions in a nice
     // format
     void printSet(std::vector<Expression> *x)
-    {
+    {   
+        outs() << "==================================\n Values reaching from arg0 (%0) = ";
         bool first = true;
-        outs() << "{";
+        outs() << "{\n";
 
         for (std::vector<Expression>::iterator it = x->begin(), iend = x->end(); it != iend; ++it)
         {
             if (!first)
             {
-                outs() << ", ";
+                outs() << " ,\n";
             }
             else
             {
                 first = false;
             }
-            outs() << (it->toString());
+            outs() <<"\t"<< (it->toString());
         }
-        outs() << "}\n";
+        outs() << "\n}\n";
     }
-
-    void printStringSet(std::vector<string> *x)
-    {
-        bool first = true;
-        outs() << "{";
-
-        for (std::vector<string>::iterator it = x->begin(), iend = x->end(); it != iend; ++it)
-        {
-            if (!first)
-            {
-                outs() << ", ";
-            }
-            else
-            {
-                first = false;
-            }
-            outs() << (*it);
-        }
-        outs() << "}\n";
-    }
-
     // The following code may be useful for both of your passes:
     // If you recall, there is no "get the variable on the left
     // hand side" function in LLVM. Normally this is fine: we

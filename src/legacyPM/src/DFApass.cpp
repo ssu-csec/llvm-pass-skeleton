@@ -1,10 +1,10 @@
 #define DEBUG_TYPE "dfapass"
 
-#include <map>
 #include "llvm/IR/LegacyPassManager.h"
 #include "llvm/Passes/PassBuilder.h"
 #include "llvm/Passes/PassPlugin.h"
 #include "llvm/IR/Module.h"
+
 #include "../include/dfa-support.h"
 
 using namespace llvm;
@@ -13,7 +13,6 @@ namespace
 {
   struct DFAPass : public ModulePass
   {
-    map<string,string> dataMap;
     static char ID;
     DFAPass() : ModulePass(ID) {}
     void getAnalysisUsage(AnalysisUsage &AU) const override
@@ -44,25 +43,22 @@ namespace
             discovered.push_back(user);
             discovered = bfs(discovered);
           }
-          errs() << "\n\n==============================\n";
+          errs() << "\n\n==================================\\n";
           print_users(discovered);
-        }
-        for(auto aa: dataMap){
-          errs() << aa.first << " = " << aa.second << "\n";
         }
       }
       return false;
     }
+
     list<User *> bfs(list<User *> discovered)
     {
       User *first = discovered.front();
       Instruction *II = dyn_cast<Instruction>(first);
       Expression IE(II);
-      dataMap.insert({IE.lhs, IE.rhs});
       if (II->getOpcode() == Instruction::Store)
       {
         discovered.pop_front();
-        errs() << discovered.size() << "  Now Inst :: " << *II << "\n";
+        errs() << discovered.size() << " Now Inst :: " << *II << "\n";
         for (auto &use : II->getOperand(1)->uses())
         {
           User *user = use.getUser();
@@ -79,8 +75,7 @@ namespace
       if (II->getOpcode() == Instruction::Load)
       {
         discovered.pop_front();
-        errs() << discovered.size() << " Now Inst :: " << *II << "\n";
-        for (auto &use : II->uses())
+        errs() << discovered.size() << " Now Inst :: " << *II << "\n";        for (auto &use : II->uses())
         {        
           User *user = use.getUser();    
           errs() << *user << "\n\n";
@@ -91,18 +86,27 @@ namespace
       }
       return discovered;
     }
+
     void print_users(list<User *> users)
     {
+      vector<Expression> userSet;
       for (auto &user : users)
       {
         user->print(errs());
         Instruction *II = dyn_cast<Instruction>(user);
-        
+        userSet.push_back( Expression(II));
         errs() << "\n\n";
       }
+
+      printSet(&userSet);
+      
     }
+    
+    
   };
 } // namespace
+
+
 
 // The address of this variable is used to uniquely identify the pass. The
 // actual value doesn't matter.
