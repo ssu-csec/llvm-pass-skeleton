@@ -30,12 +30,13 @@ namespace llvm {
     Value* v;
     unsigned int op;
     Expression (Instruction * I);
+    
     bool operator== (const Expression &e2) const;
     bool operator< (const Expression &e2) const;
     std::string toString() const;
     std::string makeRhs() const;
   };
-
+  void startFunc();
   void printSet(std::vector<Expression> * x);
 }
 

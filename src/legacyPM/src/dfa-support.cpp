@@ -32,7 +32,8 @@ namespace llvm
             if(dataMap.find(getShortValueName(v1))!=dataMap.end()){
                 this->rhs = "(" + dataMap.find(getShortValueName(v1))->second + ")";
             }
-            this->rhs = getShortValueName(v1);
+            else
+                this->rhs = getShortValueName(v1);
             dataMap.insert({this->lhs, this->rhs});
         }
         else if(I->getOpcode() == Instruction::Load){
@@ -43,7 +44,20 @@ namespace llvm
             if(dataMap.find(getShortValueName(v1))!=dataMap.end()){
                 this->rhs = "(" + dataMap.find(getShortValueName(v1))->second + ")";
             }
-            this->rhs = getShortValueName(v1);
+            else
+                this->rhs = getShortValueName(v1);
+            dataMap.insert({this->lhs, this->rhs});
+        }
+        else if(I->getOpcode() == Instruction::Ret){
+            this->v1 = I->getOperand(0);
+            this->v = I;
+            this->op = I->getOpcode();
+            if(dataMap.find(getShortValueName(v1))!=dataMap.end()){
+                this->rhs = "(" + dataMap.find(getShortValueName(v1))->second + ")";
+            }
+            else
+                this->rhs = getShortValueName(v1);
+            this->lhs = "Return";
             dataMap.insert({this->lhs, this->rhs});
         }
         else
@@ -142,8 +156,8 @@ namespace llvm
             a1 = "(" + dataMap.find(a1)->second + ")";
         }
         a2 = getShortValueName(v2);
-        if(dataMap.find(a1) != dataMap.end()){
-            a1 = "(" + dataMap.find(a2)->second + ")";
+        if(dataMap.find(a2) != dataMap.end()){
+            a2 = "(" + dataMap.find(a2)->second + ")";
         }
         return  a1 + " " + op + " " + a2;
     }
@@ -151,8 +165,8 @@ namespace llvm
     // Silly code to print out a set of expressions in a nice
     // format
     void printSet(std::vector<Expression> *x)
-    {   
-        outs() << "==================================\n Values reaching from arg0 (%0) = ";
+    {      
+        outs() << dataMap.size() <<  "==============================================\n Values reaching from arg0 (%0) = ";
         bool first = true;
         outs() << "{\n";
 
@@ -168,7 +182,7 @@ namespace llvm
             }
             outs() <<"\t"<< (it->toString());
         }
-        outs() << "\n}\n";
+        outs() << "\n}\n\n\n";
     }
     // The following code may be useful for both of your passes:
     // If you recall, there is no "get the variable on the left
@@ -226,5 +240,8 @@ namespace llvm
             std::string inst = strm->str();
             return "\"" + inst + "\"";
         }
+    }
+    void startFunc(){
+        dataMap.clear();
     }
 };

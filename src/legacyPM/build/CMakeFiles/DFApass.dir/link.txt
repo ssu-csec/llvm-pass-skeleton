@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC   -shared -Wl,-soname,libDFApass.so -o libDFApass.so CMakeFiles/DFApass.dir/src/DFApass.cpp.o CMakeFiles/DFApass.dir/src/dfa-support.cpp.o   -L/usr/lib/llvm-13/lib 

@@ -1,6 +1,0 @@
-/home/tpghks/WorkSpace/dfapass/src/legacyPM/build/CMakeFiles/rebuild_cache.dir
-/home/tpghks/WorkSpace/dfapass/src/legacyPM/build/CMakeFiles/DFApass.dir
-/home/tpghks/WorkSpace/dfapass/src/legacyPM/build/CMakeFiles/acc_gen.dir
-/home/tpghks/WorkSpace/dfapass/src/legacyPM/build/CMakeFiles/edit_cache.dir
-/home/tpghks/WorkSpace/dfapass/src/legacyPM/build/CMakeFiles/omp_gen.dir
-/home/tpghks/WorkSpace/dfapass/src/legacyPM/build/CMakeFiles/intrinsics_gen.dir

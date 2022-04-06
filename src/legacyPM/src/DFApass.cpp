@@ -13,6 +13,7 @@ namespace
 {
   struct DFAPass : public ModulePass
   {
+    vector<Instruction *> dataFlow;
     static char ID;
     DFAPass() : ModulePass(ID) {}
     void getAnalysisUsage(AnalysisUsage &AU) const override
@@ -27,24 +28,36 @@ namespace
       list<User *> discovered;
       for (auto &F : M)
       {
+        startFunc();
+        dataFlow.clear();
         int argSize = 0;
         errs() << "==============================================\n";
-        errs() << "Name of the function " << F.getName() << "\n";
+        errs() << "Name of the function is \"" << F.getName() << "\".   ";
         for (auto &arg : F.args())
         {
           argSize++;
         }
-        errs() << "this fuction has " << argSize << " args.\n\n";
+        errs() << "this fuction has " << argSize << " args.\n";
+
         if (argSize > 0)
         {
+          errs() << "Starting " << getShortValueName(dyn_cast<Value>(F.getArg(0))) << "trace ... \n\n";
+          errs() << "==============================================\n\n";
           for (auto &use : F.getArg(0)->uses())
           {
             User *user = use.getUser();
+            Instruction *II = dyn_cast<Instruction>(user);
+            Expression IE(II);
             discovered.push_back(user);
             discovered = bfs(discovered);
+            for(int i=discovered.size(); i>0; i--){
+              dataFlow.push_back(dyn_cast<Instruction>(discovered.front()));
+              discovered.pop_front();
+            }
           }
-          errs() << "\n\n==================================\\n";
-          print_users(discovered);
+          errs() << "==============================================\n";
+          // print_users(discovered);
+          print_dataflow();
         }
       }
       return false;
@@ -54,59 +67,67 @@ namespace
     {
       User *first = discovered.front();
       Instruction *II = dyn_cast<Instruction>(first);
-      Expression IE(II);
+      dataFlow.push_back(II);
+      discovered.pop_front();
+      errs() << discovered.size() << " Now Inst :: " << *II << "\n";
       if (II->getOpcode() == Instruction::Store)
       {
-        discovered.pop_front();
-        errs() << discovered.size() << " Now Inst :: " << *II << "\n";
         for (auto &use : II->getOperand(1)->uses())
         {
           User *user = use.getUser();
-          if (II == user){
+          if (II == user)
             continue;
-          }
-          
           errs() << *user << "\n\n";
           discovered.push_back(user);
-         
-        }
-         discovered = bfs(discovered);
-      }
-      if (II->getOpcode() == Instruction::Load)
-      {
-        discovered.pop_front();
-        errs() << discovered.size() << " Now Inst :: " << *II << "\n";        for (auto &use : II->uses())
-        {        
-          User *user = use.getUser();    
-          errs() << *user << "\n\n";
-          discovered.push_back(user);
-          
         }
         discovered = bfs(discovered);
       }
+      if (II->getOpcode() == Instruction::Load)
+      {
+        for (auto &use : II->uses())
+        {
+          User *user = use.getUser();
+          errs() << *user << "\n\n";
+          discovered.push_back(user);
+        }
+        discovered = bfs(discovered);
+      }
+      else
+      {
+        for (auto &use : II->uses())
+        {
+          User *user = use.getUser();
+          errs() << *user << "\n\n";
+          discovered.push_back(user);
+          discovered = bfs(discovered);
+        }
+      }
+      
       return discovered;
     }
 
     void print_users(list<User *> users)
     {
-      vector<Expression> userSet;
       for (auto &user : users)
       {
         user->print(errs());
-        Instruction *II = dyn_cast<Instruction>(user);
-        userSet.push_back( Expression(II));
+        errs() << "\n";
+      }
+    }
+
+    void print_dataflow()
+    {
+      vector<Expression> userSet;
+      for (auto &II : dataFlow)
+      {
+        errs() << *II << "\n";
+        userSet.push_back(Expression(II));
         errs() << "\n\n";
       }
-
       printSet(&userSet);
-      
     }
-    
-    
   };
 } // namespace
-
-
 
 // The address of this variable is used to uniquely identify the pass. The
 // actual value doesn't matter.
