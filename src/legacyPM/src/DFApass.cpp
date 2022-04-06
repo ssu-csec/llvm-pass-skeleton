@@ -51,7 +51,9 @@ namespace
             discovered.push_back(user);
             discovered = bfs(discovered);
             for(int i=discovered.size(); i>0; i--){
-              dataFlow.push_back(dyn_cast<Instruction>(discovered.front()));
+              Instruction* Iter = dyn_cast<Instruction>(discovered.front());
+              if(std::find(dataFlow.begin(), dataFlow.end(), Iter) == dataFlow.end())
+                dataFlow.push_back(Iter);
               discovered.pop_front();
             }
           }
@@ -67,7 +69,8 @@ namespace
     {
       User *first = discovered.front();
       Instruction *II = dyn_cast<Instruction>(first);
-      dataFlow.push_back(II);
+      if(std::find(dataFlow.begin(), dataFlow.end(), II) == dataFlow.end())
+        dataFlow.push_back(II);
       discovered.pop_front();
       errs() << discovered.size() << " Now Inst :: " << *II << "\n";
       if (II->getOpcode() == Instruction::Store)
@@ -75,7 +78,7 @@ namespace
         for (auto &use : II->getOperand(1)->uses())
         {
           User *user = use.getUser();
-          if (II == user)
+          if (II == user )
             continue;
           errs() << *user << "\n\n";
           discovered.push_back(user);
@@ -107,7 +110,8 @@ namespace
     }
 
     void print_users(list<User *> users)
-    {
+    { 
+      
       for (auto &user : users)
       {
         user->print(errs());
@@ -118,6 +122,7 @@ namespace
     void print_dataflow()
     {
       vector<Expression> userSet;
+    //  dataFlow.unique();
       for (auto &II : dataFlow)
       {
         errs() << *II << "\n";
