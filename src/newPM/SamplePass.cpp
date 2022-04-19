@@ -6,6 +6,7 @@
 
 using namespace llvm;
 
+//opt -load-pass-plugin=./libSamplePass.so -passes=SamplePass -disable-output  ../../sample.ll
 namespace {
   // New PM implementation
   struct SamplePass : PassInfoMixin<SamplePass> {
